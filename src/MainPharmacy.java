@@ -32,6 +32,10 @@ public class MainPharmacy {
                                 try {
                                     int inttmp = in.nextInt();
                                     order.listProducts.add(new Bandage(tmp, p.getPrice(), inttmp, p.getCategory()));
+                                    p.setQuantity(p.getQuantity() - inttmp );
+                                    if (p.getQuantity() < 5){
+                                        System.out.println("The product is lower than 5!");
+                                    }
                                     System.out.println("Successfully bought!");
                                     break;
                                 } catch (Exception _) {
