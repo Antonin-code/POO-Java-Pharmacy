@@ -52,9 +52,9 @@ public class MainPharmacy {
             }
         });
 
-        // on affiche les produit trié//
+        // on affiche les produits trié//
         for (Product elmnt : allproduct) {
-            System.out.println(elmnt.getName());
+            System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory() );
         }
     }
 }
