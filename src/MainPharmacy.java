@@ -25,34 +25,54 @@ public class MainPharmacy {
                     Order order = new Order();
                     System.out.println("Enter product name: ");
                     String tmp = in.nextLine();
+                    boolean found = false;
                     for (Product p : legendes) {
                         if (p.getName().equalsIgnoreCase(tmp)) {
+                            found = true;
                             while (true) {
 
                                 System.out.println("Enter the quantity: ");
                                 try {
-                                    int inttmp = in.nextInt();
-                                    if (inttmp > 0 && inttmp <= p.getQuantity()) {
-
-                                        order.listProducts.add(new Bandage(tmp, p.getPrice(), inttmp, p.getCategory()));
-                                        if (p.getQuantity() < 5) {
-                                            System.out.println("The product is lower than 5!");
+                                    String testint = in.nextLine();
+                                    boolean isint= true;
+                                    for (int i = 0; i < testint.length(); i++) {
+                                        if(!Character.isDigit(testint.charAt(i))) {
+                                            isint= false;
+                                            break;
                                         }
-                                        System.out.println("Successfully bought!");
-                                        break;
-                                    } else {
-                                        System.out.println("You cant buy the quantity you asked !");
                                     }
+                                    if (isint) {
+                                        int inttmp = Integer.valueOf(testint) ;
+
+                                        if (inttmp > 0 && inttmp <= p.getQuantity()) {
+
+                                            order.listProducts.add(new Bandage(tmp, p.getPrice(), inttmp, p.getCategory()));
+                                            if (p.getQuantity() < 5) {
+                                                System.out.println("The product is lower than 5!");
+                                            }
+                                            System.out.println("Successfully bought!");
+                                             break;
+                                        } else {
+                                            System.out.println("You cant buy the quantity you asked !");
+                                        }
+                                    }
+                                    else {
+                                        System.out.println("Enter a number");
+                                    }
+
                                 } catch (Exception _) {
                                 }
                             }
-                            break;
-                        } else {
-                            System.out.println("Désolé le produit n'existe pas !");
+                        break;
                         }
+
+                    }
+                     if (!found){
+                        System.out.println("Désolé le produit n'existe pas !");
+
                     }
 
-                    String st = in.nextLine();
+                    String st = new String();
                     boolean flag = false;
                     while (!flag) {
                         System.out.println("Do you want to still want to buy some products?");
