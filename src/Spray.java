@@ -4,6 +4,11 @@ import java.util.List;
 
 public class Spray extends Product implements Stockable {
 
+    public Spray(String name, int quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
+
     public void AddProduct(List<Product> products) {
         if (this.quantity > 0) {
             for (Product p : products) {

@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class MainPharmacy {
     public static void main(String[] args) {
         List<Product> legendes = new ArrayList<Product>();
+        List<Product>listProductCommande = new ArrayList<>();
         Bandage bd = new Bandage("bdd", 23.3F, 4, "Lebandant");
         Bandage bd1 = new Bandage("bdd2", 3.3F, 34, "Lebandant");
         Bandage bd2 = new Bandage("bdd1", 2.3F, 455, "Lebandant");
@@ -32,7 +33,6 @@ public class MainPharmacy {
                                 try {
                                     int inttmp = in.nextInt();
                                     order.listProducts.add(new Bandage(tmp, p.getPrice(), inttmp, p.getCategory()));
-                                    p.setQuantity(p.getQuantity() - inttmp );
                                     if (p.getQuantity() < 5){
                                         System.out.println("The product is lower than 5!");
                                     }
@@ -52,7 +52,15 @@ public class MainPharmacy {
                             st = in.nextLine();
                             if (st.equalsIgnoreCase("no")) {
                                 System.out.println("See you soon!");
-                                flag = true;
+                                for (Product p : order.listProducts) {
+                                    for (Product p2 : legendes) {
+                                        if (p.getName().equalsIgnoreCase(p2.getName())) {
+                                            p2.setQuantity(p2.getQuantity() - p.getQuantity());
+                                            System.out.println("Il reste actuellement :" + p2.quantity + p2.getName());
+                                        }
+                                        flag = true;
+                                    }
+                                }
                             } else if (!st.equalsIgnoreCase("yes")) {
                                 System.out.println("Answer by yes or no.");
                             }

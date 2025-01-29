@@ -4,6 +4,14 @@ import java.util.List;
 
 public class Cosmetic extends Product implements Stockable {
 
+    public Cosmetic(String name, int quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
+
+
+
+
     @Override
     public void AddProduct(List<Product> products) {
         if (this.quantity > 0) {
@@ -28,7 +36,6 @@ public class Cosmetic extends Product implements Stockable {
                 return;
             }
         }
-
 
     }
 }
