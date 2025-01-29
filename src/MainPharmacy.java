@@ -6,32 +6,36 @@ import java.util.Scanner;
 
 public class MainPharmacy {
     public static void main(String[] args) {
-        List<Product> legendes = new ArrayList<Product>();
-        Bandage bd = new Bandage("bdd", 23.3F, 4, "Lebandant");
-        Bandage bd1 = new Bandage("bdd2", 3.3F, 34, "Lebandant");
-        Bandage bd2 = new Bandage("bdd1", 2.3F, 455, "Lebandant");
-        bd.AddProduct(legendes);
-        bd2.AddProduct(legendes);
-        bd1.AddProduct(legendes);
+        Pharmacy pharmacy = new Pharmacy();
+        pharmacy.stock.category.add(new Category("Creme", "anti-irritant", new ArrayList<Product>()));
+        Category cattmp = pharmacy.stock.category.getFirst();
+
+        Product bd = new Product("bdd", 23.3F, 4);
+        Product bd1 = new Product("bdd2", 3.3F, 34);
+        Product bd2 = new Product("bdd1", 2.3F, 455);
+        bd.AddProduct(cattmp.products);
+        bd2.AddProduct(cattmp.products);
+        bd1.AddProduct(cattmp.products);
         List<Order> listOrder = new ArrayList<>();
         boolean wanttobuy = true;
         while (wanttobuy) {
             System.out.println("Do you want to buy some products?");
             Scanner in = new Scanner(System.in);
-            if (in.nextLine().equalsIgnoreCase("yes")) {
+            String input = in.nextLine();
+            if (input.equalsIgnoreCase("yes")) {
                 while (true) {
 
                     Order order = new Order();
                     System.out.println("Enter product name: ");
                     String tmp = in.nextLine();
-                    for (Product p : legendes) {
+                    for (Product p : cattmp.products) {
                         if (p.getName().equalsIgnoreCase(tmp)) {
                             while (true) {
 
                                 System.out.println("Enter the quantity: ");
                                 try {
                                     int inttmp = in.nextInt();
-                                    order.listProducts.add(new Bandage(tmp, p.getPrice(), inttmp, p.getCategory()));
+                                    order.listProducts.add(new Product(tmp, p.getPrice(), inttmp));
                                     System.out.println("Successfully bought!");
                                     break;
                                 } catch (Exception _) {
@@ -63,7 +67,7 @@ public class MainPharmacy {
 
                 }
 
-            } else if (in.nextLine().equalsIgnoreCase("no")) {
+            } else if (input.equalsIgnoreCase("no")) {
 
                 break;
             } else {
