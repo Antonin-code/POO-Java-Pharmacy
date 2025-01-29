@@ -17,8 +17,8 @@ public class MainPharmacy {
 
         //Bandage
         Bandage band1 = new Bandage("Bande adhésive", 50, 20, "bandage");
-        Bandage band2 = new Bandage("Pansement stérile", 40, 15, "bandage");
-        Bandage band3 = new Bandage("Bandage élastique", 60, 25, "bandage");
+        Bandage band2 = new Bandage("Pansement stérile", 40, 0, "bandage");
+        Bandage band3 = new Bandage("Bandage élastique", 60, 0, "bandage");
         Bandage band4 = new Bandage("Compresses médicales", 35, 10, "bandage");
 
         //Spray
@@ -54,6 +54,9 @@ public class MainPharmacy {
 
         // on affiche les produits trié//
         for (Product elmnt : allproduct) {
+            if (elmnt.getQuantity() == 0){
+                System.out.println("nom : " + elmnt.getName() +" : Out of stock");
+            }
             System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory() );
         }
     }

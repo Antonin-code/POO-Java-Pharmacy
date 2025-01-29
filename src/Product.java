@@ -18,3 +18,4 @@ public abstract class Product {
     public int getQuantity() { return quantity ;}
     public String getCategory () {return category;}
 }
+
