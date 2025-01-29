@@ -4,8 +4,65 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import java.util.ArrayList;
+
+import java.util.List;
+
+import java.util.*;
+
 public class MainPharmacy {
     public static void main(String[] args) {
+
+        //Cosmetique
+        Cosmetic cosme1 = new Cosmetic("Kiko",10);
+        Cosmetic cosme2 = new Cosmetic("Sephora", 15 );
+        Cosmetic cosme3 = new Cosmetic("Oréal", 12);
+        Cosmetic cosme4 = new Cosmetic("Maybelline", 18);
+
+        //Bandage
+        Bandage band1 = new Bandage("Bande adhésive", 50, 20, "bandage");
+        Bandage band2 = new Bandage("Pansement stérile", 40, 0, "bandage");
+        Bandage band3 = new Bandage("Bandage élastique", 60, 0, "bandage");
+        Bandage band4 = new Bandage("Compresses médicales", 35, 10, "bandage");
+
+        //Spray
+        Spray spray1 = new Spray("Sterimar",25);
+        Spray spray2 = new Spray("Désinfectant", 30);
+        Spray spray3 = new Spray("Anti-douleur", 28);
+        Spray spray4 = new Spray("Spray nasal", 22  );
+
+        List<Product> allproduct = new ArrayList<>();
+
+        // add of product in the array
+
+        allproduct.add(band1);
+        allproduct.add(band2);
+        allproduct.add(band3);
+        allproduct.add(band4);
+
+        allproduct.add(spray1);
+        allproduct.add(spray2);
+        allproduct.add(spray3);
+        allproduct.add(spray4);
+
+        allproduct.add(cosme1);
+        allproduct.add(cosme2);
+        allproduct.add(cosme3);
+        allproduct.add(cosme4);
+
+        allproduct.sort(new Comparator<Product>() {
+            public int compare(Product elmnt1, Product elmnt2) {
+                return elmnt1.getName().compareTo(elmnt2.getName());  // trie par nom //
+            }
+        });
+
+        // on affiche les produits trié//
+        for (Product elmnt : allproduct) {
+            if (elmnt.getQuantity() == 0){
+                System.out.println("nom : " + elmnt.getName() +" : Out of stock");
+            }
+            System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory() );
+        }
         List<Product> legendes = new ArrayList<Product>();
         List<Product> listProductCommande = new ArrayList<>();
         Bandage bd = new Bandage("bdd", 23.3F, 4, "Lebandant");
@@ -51,7 +108,7 @@ public class MainPharmacy {
                                                 System.out.println("The product is lower than 5!");
                                             }
                                             System.out.println("Successfully bought!");
-                                             break;
+                                            break;
                                         } else {
                                             System.out.println("You cant buy the quantity you asked !");
                                         }
@@ -63,11 +120,11 @@ public class MainPharmacy {
                                 } catch (Exception _) {
                                 }
                             }
-                        break;
+                            break;
                         }
 
                     }
-                     if (!found){
+                    if (!found){
                         System.out.println("Désolé le produit n'existe pas !");
 
                     }

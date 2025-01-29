@@ -10,6 +10,12 @@ public abstract class Product {
     protected String category;
 
 
+//    public Product(String name, float price, int quantity, String category) {
+//        this.name = name;
+//        this.price = price;
+//        this.quantity = quantity;
+//        this.category = category;
+//    }
     public String getName() {
         return name;
     }
@@ -68,3 +74,4 @@ public abstract class Product {
 
     }
 }
+
