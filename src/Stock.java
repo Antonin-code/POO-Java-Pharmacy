@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Stock implements Serializable{
     //ArrayList<Product> allproduct;
-     List<Product> allproduct;
+    ArrayList<Product> allproduct;
 
     public Stock() {
         this.allproduct = new ArrayList<>();
@@ -15,7 +15,7 @@ public class Stock implements Serializable{
         allproduct.add(product);
     }
 
-    public List<Product> sort() {
+    public ArrayList<Product> sort() {
         allproduct.sort(Comparator.comparing(Product::getName));
         return allproduct;
     }
@@ -28,7 +28,7 @@ public class Stock implements Serializable{
     }
 
 
-    public List<Product> sortByQuantity() {
+    public ArrayList<Product> sortByQuantity() {
         int n = allproduct.size();
         for (int i = 1; i < n; i++) {
             Product key = allproduct.get(i);
@@ -44,9 +44,9 @@ public class Stock implements Serializable{
         return allproduct;
     }
 
-//    public List<Product> sortByQuantity() {
+//    public ArrayList<Product> sortByQuantity() {
 //        int n = allproduct.size();
-//        List<Product> result = new ArrayList<>(n);
+//        ArrayList<Product> result = new ArrayList<>(n);
 //        for (int i = 1; i < n; i++) {
 //            Product key = allproduct.get(i);
 //            int j = 0;

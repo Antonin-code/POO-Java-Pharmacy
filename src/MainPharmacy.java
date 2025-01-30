@@ -21,14 +21,13 @@ public class MainPharmacy {
         Stock stock = new Stock();
 
         Pharmacy pharmacy = new Pharmacy();
-        pharmacy.stock.Deserialize();
+        // pharmacy.stock.Deserialize();
         // add of product in the array
 
         for (Product elmnt : stock.sort()) {
-            if (elmnt.getQuantity() == 0){
-                System.out.println("nom : " + elmnt.getName() +" : Out of stock");
-            }
-            else {
+            if (elmnt.getQuantity() == 0) {
+                System.out.println("nom : " + elmnt.getName() + " : Out of stock");
+            } else {
                 System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
             }
         }
@@ -36,29 +35,44 @@ public class MainPharmacy {
         System.out.println("_________");
 
         for (Product elmnt : stock.sortByQuantity()) {
-            if (elmnt.getQuantity() == 0){
-                System.out.println("nom : " + elmnt.getName() +" : Out of stock");
-            }
-            else {
+            if (elmnt.getQuantity() == 0) {
+                System.out.println("nom : " + elmnt.getName() + " : Out of stock");
+            } else {
                 System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
-                if(elmnt.getQuantity()<5){
+                if (elmnt.getQuantity() < 5) {
                     System.out.println(elmnt.getName() + " à réaprovisioner");
                 }
             }
         }
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Saisissez le médicament que vous souhaitez rechercher : ");
-        String word = sc.nextLine();
 
         stock.sort();
-        Product elmnt  = stock.recherche(word);
-        System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
+        while (true) {
+            System.out.println("Saisissez le médicament que vous souhaitez rechercher : ");
+            String word = sc.nextLine();
 
-
-
-
-            System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
+            Product elmnt = stock.recherche(word);
+            if (elmnt != null) {
+                System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
+            } else {
+                System.out.println("We couldn't find such product");
+            }
+            String answer = new String();
+            while (true) {
+                System.out.println("Do you want to search for another product? (yes/no)");
+                answer = sc.nextLine();
+                if (answer.equalsIgnoreCase("no")) {
+                     break;
+                }
+                else if (answer.equalsIgnoreCase("yes")) {
+                    break;
+                }
+            }
+            if (answer.equalsIgnoreCase("no")) {
+                break;
+            }
+        }
 
         ArrayList<Product> legendes = new ArrayList<Product>();
         ArrayList<Product> listProductCommande = new ArrayList<>();
@@ -69,7 +83,7 @@ public class MainPharmacy {
         bd.AddProduct(legendes);
         bd2.AddProduct(legendes);
         bd1.AddProduct(legendes);
-        List<Order> listOrder = new ArrayList<>();
+        ArrayList<Order> listOrder = new ArrayList<>();
         boolean wanttobuy = true;
         pharmacy.stock.Serialize();
         System.out.println("Do you want to see purchases ? ");
@@ -152,7 +166,6 @@ public class MainPharmacy {
                         if (st.equalsIgnoreCase("no")) {
 
                             System.out.println("See you soon!");
-
 
 
                             System.out.println(java.time.LocalDate.now());
