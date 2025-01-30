@@ -4,12 +4,6 @@ import java.util.List;
 
 public class Bandage extends Product implements Stockable {
 
-
-    public Bandage(String name, int quantity) {
-        this.name = name;
-        this.quantity = quantity;
-    }
-
     public Bandage(String name, float price, int quantity, String category) {
         this.name = name;
         this.price = price;

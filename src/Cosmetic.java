@@ -4,9 +4,12 @@ import java.util.List;
 
 public class Cosmetic extends Product implements Stockable {
 
-    public Cosmetic(String name, int quantity) {
+    public Cosmetic(String name, float price, int quantity, String category) {
         this.name = name;
+        this.price = price;
         this.quantity = quantity;
+        this.category = category;
+
     }
 
 
