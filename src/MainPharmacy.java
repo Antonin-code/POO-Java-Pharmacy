@@ -94,7 +94,7 @@ public class MainPharmacy {
                         wanttobuy = false;
                         order.Hour = java.time.LocalTime.now().toString();
                         order.Date = java.time.LocalDate.now().toString();
-                        HistoricOrder.add(order);
+                        HistoricOrder.addFirst(order);
 
                         break;
                     }
