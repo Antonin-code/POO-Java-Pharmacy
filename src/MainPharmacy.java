@@ -16,24 +16,50 @@ import java.util.*;
 
 public class MainPharmacy {
     public static void main(String[] args) {
+
+
+        Stock stock = new Stock();
+
         Pharmacy pharmacy = new Pharmacy();
         pharmacy.stock.Deserialize();
         // add of product in the array
 
-
-        pharmacy.stock.allproduct.sort(new Comparator<Product>() {
-            public int compare(Product elmnt1, Product elmnt2) {
-                return elmnt1.getName().compareTo(elmnt2.getName());  // trie par nom //
+        for (Product elmnt : stock.sort()) {
+            if (elmnt.getQuantity() == 0){
+                System.out.println("nom : " + elmnt.getName() +" : Out of stock");
             }
-        });
-
-        // on affiche les produits trié//
-        for (Product elmnt : pharmacy.stock.allproduct) {
-            if (elmnt.getQuantity() == 0) {
-                System.out.println("nom : " + elmnt.getName() + " : Out of stock");
+            else {
+                System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
             }
-            System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
         }
+
+        System.out.println("_________");
+
+        for (Product elmnt : stock.sortByQuantity()) {
+            if (elmnt.getQuantity() == 0){
+                System.out.println("nom : " + elmnt.getName() +" : Out of stock");
+            }
+            else {
+                System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
+                if(elmnt.getQuantity()<5){
+                    System.out.println(elmnt.getName() + " à réaprovisioner");
+                }
+            }
+        }
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Saisissez le médicament que vous souhaitez rechercher : ");
+        String word = sc.nextLine();
+
+        stock.sort();
+        Product elmnt  = stock.recherche(word);
+        System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
+
+
+
+
+            System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
+
         ArrayList<Product> legendes = new ArrayList<Product>();
         ArrayList<Product> listProductCommande = new ArrayList<>();
         HistoricOrder historicOrder = new HistoricOrder();
