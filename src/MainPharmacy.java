@@ -10,8 +10,8 @@ public class MainPharmacy {
     public static void main(String[] args) {
 
         //Cosmetique
-        Cosmetic cosme1 = new Cosmetic("Kiko",10,5,"cosmetic");
-        Cosmetic cosme2 = new Cosmetic("Sephora", 15, 7, "cosmetic");
+        Cosmetic cosme1 = new Cosmetic("Kiko",10,4,"cosmetic");
+        Cosmetic cosme2 = new Cosmetic("Sephora", 15, 2, "cosmetic");
         Cosmetic cosme3 = new Cosmetic("Oréal", 12, 6, "cosmetic");
         Cosmetic cosme4 = new Cosmetic("Maybelline", 18, 9, "cosmetic");
 
@@ -51,7 +51,9 @@ public class MainPharmacy {
             if (elmnt.getQuantity() == 0){
                 System.out.println("nom : " + elmnt.getName() +" : Out of stock");
             }
-            System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory() );
+            else {
+                System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
+            }
         }
 
         System.out.println("_________");
@@ -62,6 +64,9 @@ public class MainPharmacy {
             }
             else {
                 System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
+                if(elmnt.getQuantity()<5){
+                    System.out.println(elmnt.getName() + " à réaprovisioner");
+                }
             }
         }
 
