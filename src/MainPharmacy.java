@@ -17,6 +17,11 @@ public class MainPharmacy {
         bd1.AddProduct(legendes);
         List<Order> listOrder = new ArrayList<>();
         boolean wanttobuy = true;
+        boolean connected = true;
+        while (connected){
+
+        }
+
         while (wanttobuy) {
             System.out.println("Do you want to buy some products?");
             Scanner in = new Scanner(System.in);
@@ -44,7 +49,7 @@ public class MainPharmacy {
                                     } else {
                                         System.out.println("You cant buy the quantity you asked !");
                                     }
-                                } catch (Exception _) {
+                                } catch (Exception e) {
                                 }
                             }
                             break;
