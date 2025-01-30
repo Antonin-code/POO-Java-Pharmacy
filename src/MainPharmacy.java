@@ -1,5 +1,6 @@
 package src;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,12 +16,12 @@ import java.util.List;
 import java.util.*;
 
 public class MainPharmacy {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Stats stats = new Stats();
         Stock stock = new Stock();
          Pharmacy pharmacy = new Pharmacy();
-        // pharmacy.stock.Deserialize();
+        // pharmacy.stock.alize();
         // add of product in the array
 
         for (Product elmnt : stock.sort()) {
@@ -66,27 +67,19 @@ public class MainPharmacy {
         ArrayList<Product> legendes = new ArrayList<Product>();
         ArrayList<Product> listProductCommande = new ArrayList<>();
         HistoricOrder historicOrder = new HistoricOrder();
-        historicOrder.Deserialize();
-        for (Order orderH : historicOrder.allOrders) {
-            for (Product productH : orderH.listProducts){
-                boolean alreadyInStats = false;
-                for (Product productS : stats.soldProducts){
-                    if (productS.getName().equals(productH.getName())){
-                        productS.setQuantity(productS.getQuantity() + productH.getQuantity());
-                        alreadyInStats = true;
-                        break;
-                    }
+        Product bd3 = new Product("bdd", 23.3F, 2, "Lebandant");
+        Product bd4 = new Product("bdd2", 3.3F, 4, "Lebandant");
+        Product bd5 = new Product("bdd1", 2.3F, 5, "Lebandant");
+        Order ordertmp = new Order();
+        bd3.AddProduct(ordertmp.listProducts);
+        bd4.AddProduct(ordertmp.listProducts);
+        bd5.AddProduct(ordertmp.listProducts);
+        historicOrder.allOrders.add(ordertmp);
 
-                }
-                if (!alreadyInStats) {
-                    stats.soldProducts.add(productH);
-                }
-            }
-        }
+        historicOrder.Serialize();
+        stats.GetStats(historicOrder);
 
-        for (Product productH : stats.soldProducts){
 
-        }
         Product bd = new Product("bdd", 23.3F, 4, "Lebandant");
         Product bd1 = new Product("bdd2", 3.3F, 34, "Lebandant");
         Product bd2 = new Product("bdd1", 2.3F, 455, "Lebandant");
@@ -94,14 +87,16 @@ public class MainPharmacy {
         bd2.AddProduct(legendes);
         bd1.AddProduct(legendes);
 
-         Product bd3 = new Product("bdd", 23.3F, 2, "Lebandant");
-        Product bd4 = new Product("bdd2", 3.3F, 4, "Lebandant");
-        Product bd5 = new Product("bdd1", 2.3F, 5, "Lebandant");
-        Order ordertmp = new Order();
-        bd3.AddProduct(ordertmp.listProducts);
-        bd4.AddProduct(ordertmp.listProducts);
-        bd5.AddProduct(ordertmp.listProducts);
-         historicOrder.allOrders.add(ordertmp);
+//        Product bd3 = new Product("bdd", 23.3F, 2, "Lebandant");
+//        Product bd4 = new Product("bdd2", 3.3F, 4, "Lebandant");
+//        Product bd5 = new Product("bdd1", 2.3F, 5, "Lebandant");
+//        Order ordertmp = new Order();
+//        bd3.AddProduct(ordertmp.listProducts);
+//        bd4.AddProduct(ordertmp.listProducts);
+//        bd5.AddProduct(ordertmp.listProducts);
+//         historicOrder.allOrders.add(ordertmp);
+
+
          historicOrder.Serialize();
         boolean wanttobuy = true;
        // pharmacy.stock.Serialize();

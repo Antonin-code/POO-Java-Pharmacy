@@ -3,7 +3,7 @@ package src;
 import java.io.*;
 
 public interface Serializable {
-    public void Serialize();
+    public void Serialize() throws IOException;
     public void Deserialize();
 //    File fichier =  new File("tmp/register.ser") ;
 //    ObjectOutputStream oos;

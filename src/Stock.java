@@ -99,7 +99,7 @@ public class Stock implements Serializable{
 
 // dans une méthode main
         // on simplifie le code en retirant la gestion des exceptions
-        File fichier =  new File("C:\\Users\\"+System.getProperty("user.name")+"\\Desktop\\Stock.txt") ;
+        File fichier =  new File("C:\\Users\\"+System.getProperty("user.name")+"\\OneDrive\\Bureau\\Stock.txt") ;
 
         // ouverture d'un flux sur un fichier
         ObjectOutputStream oos = null;
@@ -152,4 +152,7 @@ public class Stock implements Serializable{
 
 
     }
+
+
 }
+

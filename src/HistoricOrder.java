@@ -12,14 +12,14 @@ public class HistoricOrder implements Serializable {
 
 
     @Override
-    public void Serialize() {
-
-        File fichier =  new File("C:\\Users\\"+System.getProperty("user.name")+"\\Desktop\\HistoricOrder.txt") ;
+    public void Serialize() throws IOException {
+        File fichier =  new File("C:\\Users\\"+System.getProperty("user.name")+"\\OneDrive\\Bureau\\HistoricOrder.txt") ;
+        fichier.createNewFile();
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(new FileOutputStream(fichier));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            this.Serialize();
         }
 
         // création d'un objet à sérializer
