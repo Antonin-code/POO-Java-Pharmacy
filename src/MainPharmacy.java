@@ -54,6 +54,26 @@ public class MainPharmacy {
             System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory() );
         }
 
-        System.out.println();
+        System.out.println("_________");
+
+        for (Product elmnt : stock.sortByQuantity()) {
+            if (elmnt.getQuantity() == 0){
+                System.out.println("nom : " + elmnt.getName() +" : Out of stock");
+            }
+            else {
+                System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
+            }
+        }
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Saisissez le médicament que vous souhaitez rechercher : ");
+        String word = sc.nextLine();
+
+        stock.sort();
+        Product elmnt  = stock.recherche(word);
+        System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory());
+
+
+
     }
 }

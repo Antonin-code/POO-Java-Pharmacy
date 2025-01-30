@@ -22,5 +22,8 @@ public abstract class Product implements Stockable {
     public int getQuantity() { return quantity ;}
     public String getCategory () {return category;}
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
 
