@@ -17,10 +17,9 @@ import java.util.*;
 public class MainPharmacy {
     public static void main(String[] args) {
 
-
+        Stats stats = new Stats();
         Stock stock = new Stock();
-
-        Pharmacy pharmacy = new Pharmacy();
+         Pharmacy pharmacy = new Pharmacy();
         // pharmacy.stock.Deserialize();
         // add of product in the array
 
@@ -58,17 +57,7 @@ public class MainPharmacy {
             } else {
                 System.out.println("We couldn't find such product");
             }
-            String answer = new String();
-            while (true) {
-                System.out.println("Do you want to search for another product? (yes/no)");
-                answer = sc.nextLine();
-                if (answer.equalsIgnoreCase("no")) {
-                     break;
-                }
-                else if (answer.equalsIgnoreCase("yes")) {
-                    break;
-                }
-            }
+            String answer = CheckYesOrNo(sc, "Do you want to search for another product? (yes/no)");
             if (answer.equalsIgnoreCase("no")) {
                 break;
             }
@@ -77,15 +66,45 @@ public class MainPharmacy {
         ArrayList<Product> legendes = new ArrayList<Product>();
         ArrayList<Product> listProductCommande = new ArrayList<>();
         HistoricOrder historicOrder = new HistoricOrder();
+        historicOrder.Deserialize();
+        for (Order orderH : historicOrder.allOrders) {
+            for (Product productH : orderH.listProducts){
+                boolean alreadyInStats = false;
+                for (Product productS : stats.soldProducts){
+                    if (productS.getName().equals(productH.getName())){
+                        productS.setQuantity(productS.getQuantity() + productH.getQuantity());
+                        alreadyInStats = true;
+                        break;
+                    }
+
+                }
+                if (!alreadyInStats) {
+                    stats.soldProducts.add(productH);
+                }
+            }
+        }
+
+        for (Product productH : stats.soldProducts){
+
+        }
         Product bd = new Product("bdd", 23.3F, 4, "Lebandant");
         Product bd1 = new Product("bdd2", 3.3F, 34, "Lebandant");
         Product bd2 = new Product("bdd1", 2.3F, 455, "Lebandant");
         bd.AddProduct(legendes);
         bd2.AddProduct(legendes);
         bd1.AddProduct(legendes);
-        ArrayList<Order> listOrder = new ArrayList<>();
+
+         Product bd3 = new Product("bdd", 23.3F, 2, "Lebandant");
+        Product bd4 = new Product("bdd2", 3.3F, 4, "Lebandant");
+        Product bd5 = new Product("bdd1", 2.3F, 5, "Lebandant");
+        Order ordertmp = new Order();
+        bd3.AddProduct(ordertmp.listProducts);
+        bd4.AddProduct(ordertmp.listProducts);
+        bd5.AddProduct(ordertmp.listProducts);
+         historicOrder.allOrders.add(ordertmp);
+         historicOrder.Serialize();
         boolean wanttobuy = true;
-        pharmacy.stock.Serialize();
+       // pharmacy.stock.Serialize();
         System.out.println("Do you want to see purchases ? ");
         Scanner scanner = new Scanner(System.in);
         if (scanner.nextLine().equalsIgnoreCase("yes")) {
@@ -210,6 +229,24 @@ public class MainPharmacy {
 
         }
 
+
+    }
+    public static String CheckYesOrNo(Scanner sc,String msg) {
+
+        String answer;
+        while (true) {
+            System.out.println(msg);
+            answer = sc.nextLine();
+            if (answer.equalsIgnoreCase("no")) {
+                return answer;
+            }
+            else if (answer.equalsIgnoreCase("yes")) {
+                return answer;
+             }
+            else {
+                System.out.println("Answer by yes or no.");
+            }
+        }
 
     }
 }
