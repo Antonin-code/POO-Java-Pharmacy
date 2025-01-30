@@ -23,18 +23,18 @@ public class Manager extends User implements InterfaceAdmin, InterfaceDoctor{
             }
         }
         if (!wasfound){
-            System.out.println("This user wasnt found");
+            System.out.println("This user wasn't found");
 
         }
     }
+
 
     @Override
     public void Promote(AllUsers allUsers) {
         Scanner sc = new Scanner(System.in);
         for (User u : allUsers.getAllUsers()) {
-            if (!(u instanceof Customer)) {
-                System.out.println(u.pseudo + u.role);
-            }
+
+            System.out.println(u.pseudo + u.role);
         }
 
         boolean Userfound = true;
@@ -92,21 +92,9 @@ public class Manager extends User implements InterfaceAdmin, InterfaceDoctor{
         int prix = sc.nextInt();
         System.out.println("Wich quandtity ?");
         int quantity = sc.nextInt();
+        newProduct =  new Product(nameproduct,prix,quantity,category);
 
-        switch (category) {
-            case "Bandage":
-                newProduct = new Bandage(nameproduct, prix, quantity, category);
-                break;
-            case "Cosmetic":
-                newProduct = new Cosmetic(nameproduct, prix, quantity, category);
-                break;
 
-            case "Spray":
-                newProduct = new Spray(nameproduct, prix, quantity, category);
-                break;
-            default:
-                System.out.println("This category is invalid");
-        }
         if (newProduct.quantity > 0) {
             for (Product p : products) {
                 if (p.getName().equals(newProduct.name)) {

@@ -20,21 +20,9 @@ public class Doctor extends User implements InterfaceDoctor{
         int prix = sc.nextInt();
         System.out.println("Wich quandtity ?");
         int quantity = sc.nextInt();
+        newProduct =  new Product(nameproduct,prix,quantity,category);
 
-        switch (category) {
-            case "Bandage":
-                newProduct = new Bandage(nameproduct, prix, quantity, category);
-                break;
-            case "Cosmetic":
-                newProduct = new Cosmetic(nameproduct, prix, quantity, category);
-                break;
 
-            case "Spray":
-                newProduct = new Spray(nameproduct, prix, quantity, category);
-                break;
-            default:
-                System.out.println("This category is invalid");
-        }
         if (newProduct.quantity > 0) {
             for (Product p : products) {
                 if (p.getName().equals(newProduct.name)) {
