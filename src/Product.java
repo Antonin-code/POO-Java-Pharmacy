@@ -1,6 +1,10 @@
 package src;
 
-public abstract class Product {
+import javax.lang.model.element.Element;
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Product implements Stockable {
     String name;
     float price;
     int quantity;
@@ -17,5 +21,6 @@ public abstract class Product {
     public float getPrice () {return price;}
     public int getQuantity() { return quantity ;}
     public String getCategory () {return category;}
+
 }
 

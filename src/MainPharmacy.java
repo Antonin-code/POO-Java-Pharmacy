@@ -26,38 +26,34 @@ public class MainPharmacy {
         Spray spray2 = new Spray("Désinfectant", 30, 20, "spray");
         Spray spray3 = new Spray("Anti-douleur", 28, 18, "spray");
         Spray spray4 = new Spray("Spray nasal", 22, 12, "spray");
-
-        List<Product> allproduct = new ArrayList<>();
+    
+        Stock stock = new Stock();
 
         // add of product in the array
 
-        allproduct.add(band1);
-        allproduct.add(band2);
-        allproduct.add(band3);
-        allproduct.add(band4);
+        stock.addProduct(band1);
+        stock.addProduct(band2);
+        stock.addProduct(band3);
+        stock.addProduct(band4);
 
-        allproduct.add(spray1);
-        allproduct.add(spray2);
-        allproduct.add(spray3);
-        allproduct.add(spray4);
+        stock.addProduct(spray1);
+        stock.addProduct(spray2);
+        stock.addProduct(spray3);
+        stock.addProduct(spray4);
 
-        allproduct.add(cosme1);
-        allproduct.add(cosme2);
-        allproduct.add(cosme3);
-        allproduct.add(cosme4);
-
-        allproduct.sort(new Comparator<Product>() {
-            public int compare(Product elmnt1, Product elmnt2) {
-                return elmnt1.getName().compareTo(elmnt2.getName());  // trie par nom //
-            }
-        });
+        stock.addProduct(cosme1);
+        stock.addProduct(cosme2);
+        stock.addProduct(cosme3);
+        stock.addProduct(cosme4);
 
         // on affiche les produits trié//
-        for (Product elmnt : allproduct) {
+        for (Product elmnt : stock.sort()) {
             if (elmnt.getQuantity() == 0){
                 System.out.println("nom : " + elmnt.getName() +" : Out of stock");
             }
             System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory() );
         }
+
+        System.out.println();
     }
 }
