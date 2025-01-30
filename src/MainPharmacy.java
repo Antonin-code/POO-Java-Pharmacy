@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class MainPharmacy {
     public static void main(String[] args) {
         List<Product> legendes = new ArrayList<Product>();
