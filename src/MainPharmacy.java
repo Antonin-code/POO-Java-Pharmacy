@@ -32,9 +32,11 @@ public class MainPharmacy {
         Admin Pierre = new Admin("Pierre", "pierreAdmin", "Admin");
         Customer Sylvain = new Customer("Sylvain", "sylvainlebg", "Customer");
         Doctor Steph = new Doctor("Steph", "stephlebg", "Doctor");
+        Customer Invite = new Customer("invite","","Customer");
         allusers.addUser(Pierre);
         allusers.addUser(Sylvain);
         allusers.addUser(Steph);
+        allusers.addUser(Invite);
         User user1 = null;
 
         Scanner sc = new Scanner(System.in);
@@ -60,24 +62,29 @@ public class MainPharmacy {
                     currentlyconnecting = false;
                 }
             } else if (choix.equals("2")) {
+                System.out.println("Enter invite to log in as a guest.");
                 System.out.println("Enter you're pseudo:");
                 String pseudo = sc.nextLine();
-                System.out.println("Enter you're password:");
-                String mdp = sc.nextLine();
-                for (User user : allusers.AllUsers) {
-                    if (user.pseudo.equals(pseudo) && user.mdp.equals(mdp)) {
-                        System.out.println("Connected !!");
-                        currentlyconnecting = false;
-                        System.out.println(user.pseudo);
-                        user1 = user;
+                if (pseudo.equalsIgnoreCase("invite")){
+                    user1 = Invite;
+                    currentlyconnecting = false;
+                }
+                else {
+                    System.out.println("Enter you're password:");
+                    String mdp = sc.nextLine();
+                    for (User user : allusers.AllUsers) {
+                        if (user.pseudo.equals(pseudo) && user.mdp.equals(mdp)) {
+                            System.out.println("Connected !!");
+                            currentlyconnecting = false;
+                            System.out.println(user.pseudo);
+                            user1 = user;
+                        }
                     }
                 }
             }
         }
 
         while (connected) {
-            System.out.println("");
-            System.out.println("");
             if (user1 instanceof Admin) {
                 System.out.println("1. Delete user");
                 System.out.println("2. Promote or Distute");
@@ -102,6 +109,8 @@ public class MainPharmacy {
                 }
 
             } else if (user1 instanceof Customer) {
+                System.out.println("1. Logout");
+                String chose = sc.nextLine();
 
             } else if (user1 instanceof Doctor) {
 

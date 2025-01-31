@@ -21,8 +21,6 @@ public class Doctor extends User implements InterfaceDoctor{
         System.out.println("Wich quandtity ?");
         int quantity = sc.nextInt();
         newProduct =  new Product(nameproduct,prix,quantity,category);
-
-
         if (newProduct.quantity > 0) {
             for (Product p : products) {
                 if (p.getName().equals(newProduct.name)) {
