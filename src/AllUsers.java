@@ -9,7 +9,6 @@ public class AllUsers {
     public List<User> getAllUsers() {
         return AllUsers;
     }
-
     public void setAllUsers(List<User> allUsers) {
         AllUsers = allUsers;
     }

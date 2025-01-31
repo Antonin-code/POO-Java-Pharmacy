@@ -43,7 +43,6 @@ public class User{
     public boolean isAdmin() {
         return "ADMIN".equals(this.role);
     }
-
     public boolean isEmployee() {
         return "EMPLOYEE".equals(this.role);
     }

@@ -4,12 +4,18 @@ import java.io.*;
 import java.util.*;
 
 public class Stock implements Serializable{
-    //ArrayList<Product> allproduct;
     ArrayList<Product> allproduct;
+    public ArrayList<Product> getAllproduct() {
+        return allproduct;
+    }
 
+    public void setAllproduct(ArrayList<Product> allproduct) {
+        this.allproduct = allproduct;
+    }
     public Stock() {
         this.allproduct = new ArrayList<>();
     }
+
 
     public void addProduct(Product product) {
         allproduct.add(product);
@@ -21,9 +27,9 @@ public class Stock implements Serializable{
     }
 
     public void display() {
-        System.out.println("Liste des produits en stock :");
+        System.out.println("List of products in stock:");
         for (Product elmnt : allproduct) {
-            System.out.println("nom : " + elmnt.getName() + " | prix : " + elmnt.getPrice() + " | quantité : " + elmnt.getQuantity() + " | catégorie : " + elmnt.getCategory() );
+            System.out.println("Name : " + elmnt.getName() + " | Price : " + elmnt.getPrice() + " | Quantity : " + elmnt.getQuantity() + " | Category : " + elmnt.getCategory() );
         }
     }
 
@@ -81,17 +87,16 @@ public class Stock implements Serializable{
             int comparison = compareStrings(currentName, name);
 
             if (comparison == 0) {
-                // Trouvé, retourne l'élément
                 return allproduct.get(middle);
-            } else if (comparison < 0) {
+            }
+            else if (comparison < 0) {
                 left = middle + 1;
-            } else {
-
+            }
+            else {
                 right = middle - 1;
             }
         }
-        // Si l'élément n'est pas trouvé
-        return null; // Vous pouvez gérer l'absence d'élément différemment
+        return null;
     }
     @Override
     public void Serialize() {
@@ -99,7 +104,7 @@ public class Stock implements Serializable{
 
 // dans une méthode main
         // on simplifie le code en retirant la gestion des exceptions
-        File fichier =  new File("C:\\Users\\"+System.getProperty("user.name")+"\\OneDrive\\Bureau\\Stock.txt") ;
+        File fichier =  new File("C:\\Users\\"+System.getProperty("user.name")+"\\Desktop\\Stock.txt") ;
 
         // ouverture d'un flux sur un fichier
         ObjectOutputStream oos = null;
@@ -147,10 +152,7 @@ public class Stock implements Serializable{
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
         // fermeture du flux dans le bloc finally
-
-
     }
 
 

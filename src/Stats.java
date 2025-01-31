@@ -28,7 +28,7 @@ public class Stats implements Serializable{
     @Override
     public void Serialize() {
 
-        File fichier =  new File("C:\\Users\\"+System.getProperty("user.name")+"\\OneDrive\\Bureau\\Stats.txt") ;
+        File fichier =  new File("C:\\Users\\"+System.getProperty("user.name")+"\\Desktop\\Stats.txt") ;
         ObjectOutputStream oos = null;
         try {
             oos = new ObjectOutputStream(new FileOutputStream(fichier));
@@ -101,13 +101,27 @@ public class Stats implements Serializable{
         for (Product productS : this.soldProducts){
             CA += productS.getQuantity() * productS.getPrice();
         }
-        System.out.println("le produit le plus vendu est :" + this.soldProducts.getLast().getName());
+        System.out.println("The best selling product is  :" + this.soldProducts.getLast().getName());
         System.out.println(CA);
         System.out.println();
         this.sortByQuantity();
         for (int i = this.soldProducts.size()-1; i >= 0 ; i--){
-            System.out.println("nom : " + this.soldProducts.get(i).getName() + " | prix : " + this.soldProducts.get(i).getPrice() + " | quantité : " + this.soldProducts.get(i).getQuantity() + " | catégorie : " + this.soldProducts.get(i).getCategory());
+            System.out.println("Name : " + this.soldProducts.get(i).getName() + " | Price : " + this.soldProducts.get(i).getPrice() + " | Quantity : " + this.soldProducts.get(i).getQuantity() + " | Category : " + this.soldProducts.get(i).getCategory());
         }
 }
+    public double getCA() {
+        return CA;
+    }
 
+    public void setCA(double CA) {
+        this.CA = CA;
+    }
+
+    public ArrayList<Product> getSoldProducts() {
+        return soldProducts;
+    }
+
+    public void setSoldProducts(ArrayList<Product> soldProducts) {
+        this.soldProducts = soldProducts;
+    }
 }

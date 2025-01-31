@@ -64,7 +64,34 @@ public class Product implements Serializable {
             System.out.println("Quantity invalid");
         }
     }
-
+    public void AddProduct(Stock stock) {
+        if (this.quantity >= 0) {
+            for (Product p : stock.allproduct) {
+                if (p.getName().equals(this.getName())) {
+                    System.out.println("Product already in stock");
+                    return;
+                }
+            }
+            stock.allproduct.add(this);
+            System.out.println("Product added");
+        } else {
+            System.out.println("Quantity invalid");
+        }
+    }
+    public void AddProduct(Order order) {
+        if (this.quantity >= 0) {
+            for (Product p : order.listProducts) {
+                if (p.getName().equals(this.getName())) {
+                    System.out.println("Product already in stock");
+                    return;
+                }
+            }
+            order.listProducts.add(this);
+           // System.out.println("Product added");
+        } else {
+            System.out.println("Quantity invalid");
+        }
+    }
     public void DelProduct(ArrayList<Product> products) {
         for (Product p : products) {
             if (p.getName().equals(this.getName())) {
@@ -74,6 +101,21 @@ public class Product implements Serializable {
             }
         }
 
+    }
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
 

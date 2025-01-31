@@ -2,5 +2,5 @@ package src;
 public interface InterfaceAdmin {
     void DelUser(AllUsers allusers);
 
-    void Promote(AllUsers allUsers);
+    void Promote(AllUsers allUsers, User user1);
 }

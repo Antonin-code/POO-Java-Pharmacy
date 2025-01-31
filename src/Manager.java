@@ -11,11 +11,16 @@ public class Manager extends User implements InterfaceAdmin, InterfaceDoctor{
     @Override
     public void DelUser(AllUsers allusers) {
         Scanner sc = new Scanner(System.in);
+
+        //Select the user to delete
         System.out.println("Who do you want to delete ?:");
         String pseudodel = sc.nextLine();
         boolean wasfound = false;
+        //Search for him in the list of users
         for (User u : allusers.getAllUsers()) {
             if (u.pseudo.equals(pseudodel)) {
+                //if found, remove it and tell the connected user about it
+
                 allusers.removeUser(u);
                 System.out.println("The user " + u.pseudo + " has been delete");
                 wasfound = true;
@@ -30,8 +35,9 @@ public class Manager extends User implements InterfaceAdmin, InterfaceDoctor{
 
 
     @Override
-    public void Promote(AllUsers allUsers) {
+    public void Promote(AllUsers allUsers, User user1) {
         Scanner sc = new Scanner(System.in);
+        //Select a User to Promote
         for (User u : allUsers.getAllUsers()) {
 
             System.out.println(u.pseudo + u.role);
@@ -44,6 +50,10 @@ public class Manager extends User implements InterfaceAdmin, InterfaceDoctor{
             User newuser = null;
             System.out.println("Who do you want to promote ? ");
             String pseudoPromote = sc.nextLine();
+            if(pseudoPromote.equals(user1.pseudo)){
+                System.out.println("You cannot delete yourself.");
+                continue;
+            }
             for (User u : allUsers.getAllUsers()) {
                 if (u.getPseudo().equalsIgnoreCase(pseudoPromote)) {
                     toBePromoted = u;

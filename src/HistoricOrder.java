@@ -13,7 +13,7 @@ public class HistoricOrder implements Serializable {
 
     @Override
     public void Serialize() throws IOException {
-        File fichier =  new File("C:\\Users\\"+System.getProperty("user.name")+"\\OneDrive\\Bureau\\HistoricOrder.txt") ;
+        File fichier = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\HistoricOrder.txt");
         fichier.createNewFile();
         ObjectOutputStream oos = null;
         try {
@@ -26,7 +26,7 @@ public class HistoricOrder implements Serializable {
 
         // sérialization de l'objet
         try {
-            oos.writeObject(this.allOrders) ;
+            oos.writeObject(this.allOrders);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -42,7 +42,7 @@ public class HistoricOrder implements Serializable {
 
 // dans une méthode main
         // on simplifie le code en retirant la gestion des exceptions
-        File fichier =  new File("C:\\Users\\"+System.getProperty("user.name")+"\\Desktop\\HistoricOrder.txt") ;
+        File fichier = new File("C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\HistoricOrder.txt");
 
         // ouverture d'un flux sur un fichier
         ObjectInputStream ois = null;
@@ -54,7 +54,7 @@ public class HistoricOrder implements Serializable {
 
         // désérialization de l'objet
         try {
-            this.allOrders = (ArrayList<Order>) ois.readObject() ;
+            this.allOrders = (ArrayList<Order>) ois.readObject();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -64,5 +64,16 @@ public class HistoricOrder implements Serializable {
         // fermeture du flux dans le bloc finally
 
 
+    }
+    public void AddOrder(Order order) {
+        this.allOrders.add(order);
+    }
+
+    public ArrayList<Order> getAllOrders() {
+        return allOrders;
+    }
+
+    public void setAllOrders(ArrayList<Order> allOrders) {
+        this.allOrders = allOrders;
     }
 }

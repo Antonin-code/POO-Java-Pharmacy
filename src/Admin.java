@@ -1,8 +1,7 @@
 package src;
 
-import com.sun.jdi.connect.Connector;
+import com.sun.source.tree.ContinueTree;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Admin extends User implements InterfaceAdmin {
@@ -31,7 +30,7 @@ public class Admin extends User implements InterfaceAdmin {
     }
 
     @Override
-    public void Promote(AllUsers allUsers) {
+    public void Promote(AllUsers allUsers, User user1) {
         Scanner sc = new Scanner(System.in);
         for (User u : allUsers.getAllUsers()) {
             if (!(u instanceof Customer)) {
@@ -46,6 +45,10 @@ public class Admin extends User implements InterfaceAdmin {
             User newuser = null;
             System.out.println("Who do you want to promote ? ");
             String pseudoPromote = sc.nextLine();
+            if(pseudoPromote.equals(user1.pseudo)){
+                System.out.println("You cannot delete yourself.");
+                continue;
+            }
             for (User u : allUsers.getAllUsers()) {
                 if (u.getPseudo().equalsIgnoreCase(pseudoPromote)) {
                     toBePromoted = u;
@@ -53,6 +56,7 @@ public class Admin extends User implements InterfaceAdmin {
                     break;
                 }
             }
+
 
             if (Userfound) {
                 System.out.println("User not found. Try again.");
